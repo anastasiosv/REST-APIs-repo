@@ -1,10 +1,11 @@
-**FLASK REST API**
+# Mock e-store Rest API
 
-Using python and flask, I create a mock e-store REST API. 
+Mock e-store REST API is a Python REST API with Flask library and SQLAlchmeny which simulates an e-store.
 
-The implementation contains:
-** Basic authentication for the users
-** Needed pieces of code in order to:
-GET, POST, UPDATE, DELETE resources
-** SQLAlchemy in order to have a solid database of users, stores and items. 
+# Test Environemnt
+Testing phase of our REST API took place on Postman Application. 
 
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
