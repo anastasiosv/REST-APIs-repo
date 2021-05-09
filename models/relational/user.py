@@ -2,38 +2,28 @@ from db import db
 
 
 class UserModel(db.Model):
-    __tablename__ = 'users'
+    __tablename__ = 'User'
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80))
     password = db.Column(db.String(80))
-    age = db.Column(db.String(80))
-    height = db.Column(db.String(80))
-    weight = db.Column(db.String(80))
-    status = db.Column(db.String(80))
-    favSport = db.Column(db.String(80))
-    isAthlete = db.Column(db.Boolean)
+    birthday = db.Column(db.String(80))
+    address = db.relationship('Adress', lazy='dynamic')
+    isOwner = db.Column(db.Boolean)
 
-    def __init__(self, username, password,age, height, weight, status, favSport, isAthlete):
+    def __init__(self, username, password, birthday, isOwner):
         self.username = username
         self.password = password
-        self.age = age
-        self.height = height
-        self.weight = weight
-        self.status = status
-        self.favSport = favSport
-        self.isAthlete = isAthlete
+        self.birthday = birthday
+        self.isOwner = isOwner
 
     def json(self):
         return {
             'id': self.id,
             'username': self.username,
-            'age': self.age,
-            'height': self.height,
-            'weight': self.weight,
-            'status': self.status,
-            'favSport': self.favSport,
-            'isAthlete': self.isAthlete,
+            'birthdate': self.birthday,
+            'Owner': self.isOwner,
+            'address': [address.json() for address in self.address.find_by_username()]
         }
 
     def save_to_db(self):
